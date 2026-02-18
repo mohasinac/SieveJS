@@ -1,21 +1,21 @@
-# Sieve JS
+# SieveJS
 
-[![npm version](https://img.shields.io/npm/v/@mohasinac/sieve-middleware.svg?style=flat-square)](https://www.npmjs.com/package/@mohasinac/sieve-middleware)
-[![npm downloads](https://img.shields.io/npm/dm/@mohasinac/sieve-middleware.svg?style=flat-square)](https://www.npmjs.com/package/@mohasinac/sieve-middleware)
+[![npm version](https://img.shields.io/npm/v/@mohasinac/sievejs.svg?style=flat-square)](https://www.npmjs.com/package/@mohasinac/sievejs)
+[![npm downloads](https://img.shields.io/npm/dm/@mohasinac/sievejs.svg?style=flat-square)](https://www.npmjs.com/package/@mohasinac/sievejs)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/mohasinac/SieveJS/ci_publish.yml?style=flat-square)](https://github.com/mohasinac/SieveJS/actions)
-[![License](https://img.shields.io/npm/l/@mohasinac/sieve-middleware.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/npm/l/@mohasinac/sievejs.svg?style=flat-square)](LICENSE)
 
-Sieve JS is a JavaScript-first, ESM-only filtering, sorting, and pagination library inspired by Sieve for .NET.
+SieveJS is a JavaScript-first, ESM-only filtering, sorting, and pagination library inspired by Sieve for .NET.
 
 It applies query logic at the database/query-builder layer (Knex/Mongoose/Prisma/SQL Server/Firebase/Couchbase), instead of in-memory filtering by default.
 
 ## Install
 
 ```bash
-npm install @mohasinac/sieve-middleware
+npm install @mohasinac/sievejs
 ```
 
-📦 **[View on npm](https://www.npmjs.com/package/@mohasinac/sieve-middleware)**
+📦 **[View on npm](https://www.npmjs.com/package/@mohasinac/sievejs)**
 
 ## Quick start (Express)
 
@@ -25,7 +25,7 @@ import {
     createKnexAdapter,
     createSieveMiddleware,
     SieveProcessorBase,
-} from "@mohasinac/sieve-middleware";
+} from "@mohasinac/sievejs";
 
 const processor = new SieveProcessorBase({
     adapter: createKnexAdapter(),
@@ -53,7 +53,7 @@ app.get(
 
 ## Versioning
 
-- Package: `@mohasinac/sieve-middleware`
+- Package: `@mohasinac/sievejs`
 - Current version: `1.0.0`
 - Version policy: [SemVer](https://semver.org/)
     - `MAJOR`: breaking API changes
@@ -80,7 +80,7 @@ In this example, we use `posts` to show filtering/sorting/pagination.
 import {
     createKnexAdapter,
     SieveProcessorBase,
-} from "@mohasinac/sieve-middleware";
+} from "@mohasinac/sievejs";
 
 const processor = new SieveProcessorBase({
     adapter: createKnexAdapter(),
@@ -114,7 +114,7 @@ const processor = new SieveProcessorBase({
 #### Option B: Attributes/metadata in code
 
 ```js
-import { Sieve, buildFieldsFromClass } from "@mohasinac/sieve-middleware";
+import { Sieve, buildFieldsFromClass } from "@mohasinac/sievejs";
 
 class Post {}
 
@@ -137,7 +137,7 @@ import {
     createSieveMiddleware,
     createKnexAdapter,
     SieveProcessorBase,
-} from "@mohasinac/sieve-middleware";
+} from "@mohasinac/sievejs";
 
 const app = express();
 
@@ -177,7 +177,7 @@ Custom methods can be provided via processor configuration:
 import {
     createSieveProcessor,
     createPrismaAdapter,
-} from "@mohasinac/sieve-middleware";
+} from "@mohasinac/sievejs";
 
 const processor = createSieveProcessor({
     adapter: createPrismaAdapter(),
@@ -312,7 +312,7 @@ GET /posts?filters=creatorName==mohasin
 You can map any request shape to Sieve model format (`filters`, `sorts`, `page`, `pageSize`) in integrations:
 
 ```js
-import { createSieveIntegration } from "@mohasinac/sieve-middleware";
+import { createSieveIntegration } from "@mohasinac/sievejs";
 
 const runSieve = createSieveIntegration({
     processor,
@@ -342,7 +342,7 @@ import {
     SieveException,
     SieveIncompatibleMethodException,
     SieveMethodNotFoundException,
-} from "@mohasinac/sieve-middleware";
+} from "@mohasinac/sievejs";
 
 app.use((error, req, res, next) => {
     if (
@@ -365,13 +365,13 @@ app.use((error, req, res, next) => {
 ### Express helper
 
 ```js
-import { createExpressSieveMiddleware } from "@mohasinac/sieve-middleware/integrations";
+import { createExpressSieveMiddleware } from "@mohasinac/sievejs/integrations";
 ```
 
 ### Next App Router helper
 
 ```js
-import { createNextRouteHandler } from "@mohasinac/sieve-middleware/integrations";
+import { createNextRouteHandler } from "@mohasinac/sievejs/integrations";
 ```
 
 ## Adapters
@@ -445,7 +445,7 @@ const { statement, parameters } = buildCouchbaseQuery(plan, {
 ## Pipes
 
 ```js
-import { createSievePipe } from "@mohasinac/sieve-middleware";
+import { createSievePipe } from "@mohasinac/sievejs";
 
 const sievePipe = createSievePipe({ processor });
 const query = sievePipe(req.query, db("posts"));
@@ -455,32 +455,32 @@ const query = sievePipe(req.query, db("posts"));
 
 Use direct imports when you only need specific modules:
 
-- Core: `import { createSieveProcessor, createSieveMiddleware, createSievePipe } from "@mohasinac/sieve-middleware"`
-- Attributes + metadata: `import { Sieve, SieveAttribute, buildFieldsFromClass, getSieveMetadata } from "@mohasinac/sieve-middleware/attributes"`
-- Exceptions: `import { SieveException } from "@mohasinac/sieve-middleware/exceptions"`
-- Extensions: `import { getMethodExt } from "@mohasinac/sieve-middleware/extensions"`
-- Models: `import { SieveModel } from "@mohasinac/sieve-middleware/models"`
-- Services: `import { SieveProcessorBase } from "@mohasinac/sieve-middleware/services"`
-- Pipes: `import { createSievePipe } from "@mohasinac/sieve-middleware/pipes"`
-- Integrations: `import { createExpressSieveMiddleware, createNextRouteHandler } from "@mohasinac/sieve-middleware/integrations"`
+- Core: `import { createSieveProcessor, createSieveMiddleware, createSievePipe } from "@mohasinac/sievejs"`
+- Attributes + metadata: `import { Sieve, SieveAttribute, buildFieldsFromClass, getSieveMetadata } from "@mohasinac/sievejs/attributes"`
+- Exceptions: `import { SieveException } from "@mohasinac/sievejs/exceptions"`
+- Extensions: `import { getMethodExt } from "@mohasinac/sievejs/extensions"`
+- Models: `import { SieveModel } from "@mohasinac/sievejs/models"`
+- Services: `import { SieveProcessorBase } from "@mohasinac/sievejs/services"`
+- Pipes: `import { createSievePipe } from "@mohasinac/sievejs/pipes"`
+- Integrations: `import { createExpressSieveMiddleware, createNextRouteHandler } from "@mohasinac/sievejs/integrations"`
 - Adapters:
-    - `import { createKnexAdapter } from "@mohasinac/sieve-middleware/adapters/knex"`
-    - `import { createMongooseAdapter } from "@mohasinac/sieve-middleware/adapters/mongoose"`
-    - `import { createPrismaAdapter } from "@mohasinac/sieve-middleware/adapters/prisma"`
-    - `import { createSqlServerAdapter, buildSqlServerQuery } from "@mohasinac/sieve-middleware/adapters/sqlserver"`
-    - `import { createFirebaseAdapter } from "@mohasinac/sieve-middleware/adapters/firebase"`
-    - `import { createCouchbaseAdapter, buildCouchbaseQuery } from "@mohasinac/sieve-middleware/adapters/couchbase"`
+    - `import { createKnexAdapter } from "@mohasinac/sievejs/adapters/knex"`
+    - `import { createMongooseAdapter } from "@mohasinac/sievejs/adapters/mongoose"`
+    - `import { createPrismaAdapter } from "@mohasinac/sievejs/adapters/prisma"`
+    - `import { createSqlServerAdapter, buildSqlServerQuery } from "@mohasinac/sievejs/adapters/sqlserver"`
+    - `import { createFirebaseAdapter } from "@mohasinac/sievejs/adapters/firebase"`
+    - `import { createCouchbaseAdapter, buildCouchbaseQuery } from "@mohasinac/sievejs/adapters/couchbase"`
 
 ## Upgrading
 
-### Migrating from .NET Sieve to Sieve JS
+### Migrating from .NET Sieve to SieveJS
 
 - Replace attribute annotations with JS metadata (`Sieve(...)`) or `fields` config.
 - Replace `IQueryable` pipeline with adapter-native query objects (`Knex`, `Prisma args`, etc.).
 - Replace ASP.NET model binding with integration `requestModel` mapping.
 - Keep filtering/sorting/pagination at query-builder/database layer.
 
-### Updating within Sieve JS
+### Updating within SieveJS
 
 - Follow SemVer tags/releases.
 - Read release notes before upgrading minor versions while in `0.x`.

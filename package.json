@@ -1,5 +1,5 @@
 {
-  "name": "@mohasinac/sieve-middleware",
+  "name": "@mohasinac/sievejs",
   "version": "1.0.0",
   "description": "Database-level filtering, sorting, and pagination middleware inspired by Sieve",
   "author": "mohasinac",

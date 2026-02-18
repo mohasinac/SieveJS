@@ -54,5 +54,5 @@ app.get("/health", (req, res) => {
 
 const port = Number(process.env.PORT ?? 3000);
 app.listen(port, () => {
-    console.log(`Sieve JS sample listening on :${port}`);
+    console.log(`SieveJS sample listening on :${port}`);
 });

@@ -1,4 +1,4 @@
-# Sieve JS Sample
+# SieveJS Sample
 
 This sample folder demonstrates the integration design pattern with:
 
@@ -42,7 +42,7 @@ import {
     createFirebaseAdapter,
     createNextRouteHandler,
     SieveProcessorBase,
-} from "@mohasinac/sieve-middleware";
+} from "@mohasinac/sievejs";
 
 const processor = new SieveProcessorBase({
     adapter: createFirebaseAdapter(),

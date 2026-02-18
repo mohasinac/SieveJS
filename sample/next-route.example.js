@@ -3,7 +3,7 @@ import {
     createFirebaseAdapter,
     createNextRouteHandler,
     SieveProcessorBase,
-} from "@mohasinac/sieve-middleware";
+} from "@mohasinac/sievejs";
 
 const firestore = globalThis.firestore;
 
