@@ -54,7 +54,7 @@ app.get(
 ## Versioning
 
 - Package: `@mohasinac/sieve-middleware`
-- Current version: `0.1.0`
+- Current version: `1.0.0`
 - Version policy: [SemVer](https://semver.org/)
     - `MAJOR`: breaking API changes
     - `MINOR`: backward-compatible features

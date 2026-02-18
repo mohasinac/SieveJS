@@ -1,6 +1,6 @@
 {
   "name": "@mohasinac/sieve-middleware",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Database-level filtering, sorting, and pagination middleware inspired by Sieve",
   "author": "mohasinac",
   "repository": {
