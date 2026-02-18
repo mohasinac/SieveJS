@@ -1,0 +1,103 @@
+{
+  "name": "@mohasinac/sieve-middleware",
+  "version": "0.1.0",
+  "description": "Database-level filtering, sorting, and pagination middleware inspired by Sieve",
+  "author": "mohasinac",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohasinac/SieveJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mohasinac/SieveJS/issues"
+  },
+  "homepage": "https://github.com/mohasinac/SieveJS",
+  "type": "module",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "npm run test:smoke && npm run test:unit",
+    "test:smoke": "node -e \"import('./src/index.js').then(() => console.log('ok')).catch((err) => { console.error(err); process.exit(1); });\"",
+    "test:unit": "node --test tests/**/*.test.js",
+    "start:sample": "node sample/server.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./attributes": {
+      "types": "./src/types/subpaths/attributes.d.ts",
+      "default": "./src/attributes/sieveMetadata.js"
+    },
+    "./exceptions": {
+      "types": "./src/types/subpaths/exceptions.d.ts",
+      "default": "./src/exceptions/SieveException.js"
+    },
+    "./extensions": {
+      "types": "./src/types/subpaths/extensions.d.ts",
+      "default": "./src/extensions/MethodInfoExtended.js"
+    },
+    "./models": {
+      "types": "./src/types/subpaths/models.d.ts",
+      "default": "./src/models/SieveModel.js"
+    },
+    "./services": {
+      "types": "./src/types/subpaths/services.d.ts",
+      "default": "./src/services/SieveProcessorBase.js"
+    },
+    "./pipes": {
+      "types": "./src/types/subpaths/pipes.d.ts",
+      "default": "./src/pipes/sievePipe.js"
+    },
+    "./integrations": {
+      "types": "./src/types/subpaths/integrations.d.ts",
+      "default": "./src/integrations/index.js"
+    },
+    "./adapters/knex": {
+      "types": "./src/types/subpaths/adapter-knex.d.ts",
+      "default": "./src/adapters/knexAdapter.js"
+    },
+    "./adapters/mongoose": {
+      "types": "./src/types/subpaths/adapter-mongoose.d.ts",
+      "default": "./src/adapters/mongooseAdapter.js"
+    },
+    "./adapters/prisma": {
+      "types": "./src/types/subpaths/adapter-prisma.d.ts",
+      "default": "./src/adapters/prismaAdapter.js"
+    },
+    "./adapters/sqlserver": {
+      "types": "./src/types/subpaths/adapter-sqlserver.d.ts",
+      "default": "./src/adapters/sqlServerAdapter.js"
+    },
+    "./adapters/firebase": {
+      "types": "./src/types/subpaths/adapter-firebase.d.ts",
+      "default": "./src/adapters/firebaseAdapter.js"
+    },
+    "./adapters/couchbase": {
+      "types": "./src/types/subpaths/adapter-couchbase.d.ts",
+      "default": "./src/adapters/couchbaseAdapter.js"
+    }
+  },
+  "keywords": [
+    "sieve",
+    "filtering",
+    "sorting",
+    "pagination",
+    "middleware",
+    "express",
+    "decorators",
+    "pipes",
+    "knex",
+    "mongoose",
+    "prisma",
+    "sql-server",
+    "firebase",
+    "couchbase"
+  ],
+  "license": "MIT"
+}

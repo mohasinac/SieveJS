@@ -1,0 +1,15 @@
+{
+  "options": {
+    "caseSensitive": false,
+    "defaultPageSize": 20,
+    "maxPageSize": 100,
+    "throwExceptions": true,
+    "ignoreNullsOnNotEqual": true
+  },
+  "fields": {
+    "id": { "path": "posts.id", "canFilter": true, "canSort": true },
+    "title": { "path": "posts.title", "canFilter": true, "canSort": true },
+    "likeCount": { "path": "posts.like_count", "canFilter": true, "canSort": true },
+    "created": { "path": "posts.created_at", "canFilter": true, "canSort": true }
+  }
+}
