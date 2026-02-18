@@ -77,10 +77,7 @@ In this example, we use `posts` to show filtering/sorting/pagination.
 ### 1. Create and configure a processor
 
 ```js
-import {
-    createKnexAdapter,
-    SieveProcessorBase,
-} from "@mohasinac/sievejs";
+import { createKnexAdapter, SieveProcessorBase } from "@mohasinac/sievejs";
 
 const processor = new SieveProcessorBase({
     adapter: createKnexAdapter(),
@@ -174,10 +171,7 @@ GET /posts?sorts=likeCount,commentCount,-created&filters=likeCount>10,title@=awe
 Custom methods can be provided via processor configuration:
 
 ```js
-import {
-    createSieveProcessor,
-    createPrismaAdapter,
-} from "@mohasinac/sievejs";
+import { createSieveProcessor, createPrismaAdapter } from "@mohasinac/sievejs";
 
 const processor = createSieveProcessor({
     adapter: createPrismaAdapter(),
