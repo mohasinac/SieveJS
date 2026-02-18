@@ -10,6 +10,8 @@ It applies query logic at the database/query-builder layer (Knex/Mongoose/Prisma
 npm install @mohasinac/sieve-middleware
 ```
 
+📦 **[View on npm](https://www.npmjs.com/package/@mohasinac/sieve-middleware)**
+
 ## Quick start (Express)
 
 ```js
