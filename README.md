@@ -1,5 +1,10 @@
 # Sieve JS
 
+[![npm version](https://img.shields.io/npm/v/@mohasinac/sieve-middleware.svg?style=flat-square)](https://www.npmjs.com/package/@mohasinac/sieve-middleware)
+[![npm downloads](https://img.shields.io/npm/dm/@mohasinac/sieve-middleware.svg?style=flat-square)](https://www.npmjs.com/package/@mohasinac/sieve-middleware)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/mohasinac/SieveJS/ci_publish.yml?style=flat-square)](https://github.com/mohasinac/SieveJS/actions)
+[![License](https://img.shields.io/npm/l/@mohasinac/sieve-middleware.svg?style=flat-square)](LICENSE)
+
 Sieve JS is a JavaScript-first, ESM-only filtering, sorting, and pagination library inspired by Sieve for .NET.
 
 It applies query logic at the database/query-builder layer (Knex/Mongoose/Prisma/SQL Server/Firebase/Couchbase), instead of in-memory filtering by default.
