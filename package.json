@@ -22,7 +22,7 @@
   "scripts": {
     "test": "npm run test:smoke && npm run test:unit",
     "test:smoke": "node -e \"import('./src/index.js').then(() => console.log('ok')).catch((err) => { console.error(err); process.exit(1); });\"",
-    "test:unit": "node --test tests/**/*.test.js",
+    "test:unit": "node --test tests/*.test.js",
     "start:sample": "node sample/server.js"
   },
   "exports": {
