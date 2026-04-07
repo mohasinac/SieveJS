@@ -49,6 +49,17 @@ export function createExpressSieveMiddleware<Q = unknown, C = unknown>(
   next: (error?: unknown) => void,
 ) => void;
 
+export interface FastifySievePreHandlerInput<Q = unknown, C = unknown> {
+  processor: Pick<SieveProcessor<Q, C>, "apply">;
+  queryFactory: (request: unknown, reply: unknown) => Q;
+  requestModel?: (request: unknown) => Partial<SieveModelInput>;
+  assignTo?: string;
+}
+
+export function createFastifySievePreHandler<Q = unknown, C = unknown>(
+  input: FastifySievePreHandlerInput<Q, C>,
+): (request: Record<string, unknown>, reply: unknown) => Promise<void>;
+
 export interface NextRouteHandlerInput<
   Q = unknown,
   C = unknown,

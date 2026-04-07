@@ -6,6 +6,7 @@ export { createSieveMiddleware } from "./middleware.js";
 export { createSievePipe } from "./pipes/sievePipe.js";
 export { createSieveIntegration } from "./integrations/createSieveIntegration.js";
 export { createExpressSieveMiddleware } from "./integrations/express.js";
+export { createFastifySievePreHandler } from "./integrations/fastify.js";
 export {
     createNextRouteHandler,
     toSieveModelFromSearchParams,
