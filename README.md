@@ -362,6 +362,56 @@ app.use((error, req, res, next) => {
 import { createExpressSieveMiddleware } from "@mohasinac/sievejs/integrations";
 ```
 
+### Fastify helper
+
+Use `createFastifySievePreHandler` as a route-level `preHandler` or register it
+globally with `addHook('preHandler', ...)`. It assigns the processed query to
+`request.sieveQuery` so the route handler can await execution.
+
+```js
+import Fastify from "fastify";
+import knex from "knex";
+import {
+    createFastifySievePreHandler,
+    createKnexAdapter,
+    SieveProcessorBase,
+} from "@mohasinac/sievejs";
+
+const db = knex({ client: "pg", connection: process.env.DATABASE_URL });
+
+const processor = new SieveProcessorBase({
+    adapter: createKnexAdapter(),
+    autoLoadConfig: true,
+});
+
+const fastify = Fastify();
+
+fastify.get(
+    "/posts",
+    {
+        preHandler: createFastifySievePreHandler({
+            processor,
+            queryFactory: () => db("posts"),
+        }),
+    },
+    async (request, reply) => {
+        const rows = await request.sieveQuery;
+        reply.send(rows);
+    },
+);
+```
+
+Custom `requestModel` and `assignTo` are also supported:
+
+```js
+createFastifySievePreHandler({
+    processor,
+    queryFactory: (req) => db(req.params.table),
+    requestModel: (req) => req.body,
+    assignTo: "filteredQuery",
+});
+```
+
 ### Next App Router helper
 
 ```js
@@ -456,7 +506,7 @@ Use direct imports when you only need specific modules:
 - Models: `import { SieveModel } from "@mohasinac/sievejs/models"`
 - Services: `import { SieveProcessorBase } from "@mohasinac/sievejs/services"`
 - Pipes: `import { createSievePipe } from "@mohasinac/sievejs/pipes"`
-- Integrations: `import { createExpressSieveMiddleware, createNextRouteHandler } from "@mohasinac/sievejs/integrations"`
+- Integrations: `import { createExpressSieveMiddleware, createFastifySievePreHandler, createNextRouteHandler } from "@mohasinac/sievejs/integrations"`
 - Adapters:
     - `import { createKnexAdapter } from "@mohasinac/sievejs/adapters/knex"`
     - `import { createMongooseAdapter } from "@mohasinac/sievejs/adapters/mongoose"`

@@ -5,6 +5,7 @@
 export { createSieveIntegration } from "./createSieveIntegration.js";
 // Framework adapters.
 export { createExpressSieveMiddleware } from "./express.js";
+export { createFastifySievePreHandler } from "./fastify.js";
 export {
     createNextRouteHandler,
     toSieveModelFromSearchParams,

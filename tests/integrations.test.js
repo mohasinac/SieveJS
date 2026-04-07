@@ -6,6 +6,7 @@ import assert from "node:assert/strict";
 
 import {
     createExpressSieveMiddleware,
+    createFastifySievePreHandler,
     createNextRouteHandler,
     createSieveIntegration,
     toSieveModelFromSearchParams,
@@ -100,5 +101,41 @@ test("toSieveModelFromSearchParams extracts sieve keys", () => {
         sorts: "-created",
         page: undefined,
         pageSize: undefined,
+    });
+});
+
+test("createFastifySievePreHandler assigns sieve query to request", async () => {
+    const preHandler = createFastifySievePreHandler({
+        processor: createProcessor(),
+        queryFactory: () => ({ source: "fastify" }),
+    });
+
+    const request = { query: { filters: "status==active" } };
+    const reply = {};
+
+    await preHandler(request, reply);
+
+    assert.equal(request.sieveQuery.source, "fastify");
+    assert.deepEqual(request.sieveQuery.model, { filters: "status==active" });
+    assert.ok(request.sieveQuery.execution?.context?.request);
+    assert.ok(request.sieveQuery.execution?.context?.reply === reply);
+});
+
+test("createFastifySievePreHandler respects custom assignTo and requestModel", async () => {
+    const preHandler = createFastifySievePreHandler({
+        processor: createProcessor(),
+        queryFactory: (req) => ({ source: "fastify-custom", reqRef: req }),
+        requestModel: (request) => ({ filters: request.body?.where }),
+        assignTo: "filteredQuery",
+    });
+
+    const request = { query: {}, body: { where: "title@=hello" } };
+    const reply = {};
+
+    await preHandler(request, reply);
+
+    assert.equal(request.filteredQuery.source, "fastify-custom");
+    assert.deepEqual(request.filteredQuery.model, {
+        filters: "title@=hello",
     });
 });

@@ -1,5 +1,6 @@
 export {
   createExpressSieveMiddleware,
+  createFastifySievePreHandler,
   createNextRouteHandler,
   createSieveIntegration,
   toSieveModelFromSearchParams,
